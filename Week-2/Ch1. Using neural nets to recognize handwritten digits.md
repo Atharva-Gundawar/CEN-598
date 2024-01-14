@@ -31,15 +31,15 @@ Sigmoid neurons solve this problem by ensuring small changes in weights and bias
 
 - **Structure:** Sigmoid neurons are similar to perceptrons but with a key difference in output. The output is given by $\sigma(w \cdot x + b)$, where $\sigma$ is the sigmoid function, defined as:
 
-  $$
+$$
   \sigma(z) \equiv \frac{1}{1+e^{-z}}.
-  $$
+$$
 
 - **Output:** For inputs $x_1,x_2,\ldots$, weights $w_1,w_2,\ldots$, and bias $b$, the output is:
 
-  $$
+$$
   \frac{1}{1+\exp(-\sum_j w_j x_j - b)}.
-  $$
+$$
 
 **Similarity to Perceptrons**
 

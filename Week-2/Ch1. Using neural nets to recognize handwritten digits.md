@@ -249,14 +249,18 @@ Deep neural networks, characterized by multiple layers, decompose complex questi
 	
 	**Solution:**
 	Multiplying all weights and biases in a perceptron network by a positive constant $c > 0$ does not change its behavior. The output of a perceptron is given by:
+
 $$
 	 y = \text{step}\left(\sum_{i}(w_i \cdot x_i) + b\right)
 $$
-	After multiplying the weights and biases by $ c $, the equation becomes:
+
+After multiplying the weights and biases by $ c $, the equation becomes:
+
 $$
 	y' = \text{step}\left(\sum_{i}(c \cdot w_i \cdot x_i) + c \cdot b\right) = \text{step}\left(c \cdot \left( \sum_{i}(w_i \cdot x_i) + b \right)\right)
 $$
-	The step function's output is based on the sign of its input. Multiplying by a positive  $c$  does not change the sign of the input. Therefore, the behavior of the perceptron remains unchanged, as the output of the step function is determined by the input's sign, not its magnitude.
+
+The step function's output is based on the sign of its input. Multiplying by a positive  $c$  does not change the sign of the input. Therefore, the behavior of the perceptron remains unchanged, as the output of the step function is determined by the input's sign, not its magnitude.
 
 2. **Question :** 
 	Sigmoid neurons simulating perceptrons, part II 

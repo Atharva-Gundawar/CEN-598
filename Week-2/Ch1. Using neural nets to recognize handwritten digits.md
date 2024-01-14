@@ -86,7 +86,7 @@ Unlike perceptrons, sigmoid neurons output values between 0 and 1. This requires
 
 3. **Three-Layer Neural Network for Digit Recognition**
    - **Input Layer**: 784 neurons (28x28 pixels), representing greyscale values (0.0 for white, 1.0 for black, and in-between values for grey shades).
-   - **Hidden Layer**: Variable number of neurons, denoted as $ n $. Example given with $ n = 15 $.
+   - **Hidden Layer**: Variable number of neurons, denoted as $n$. Example given with $n = 15$.
    - **Output Layer**: 10 neurons, each representing a digit (0-9). The network identifies the digit by determining which neuron has the highest activation value.
    - **Rationale for 10 Output Neurons**: Empirically more effective than using 4 binary neurons. The network evaluates evidence from the hidden layer, potentially identifying shapes or patterns indicative of specific digits.
    - **Neural Network Operation Heuristic**: The hidden neurons may detect components or features of digits, influencing the final output. A heuristic approach suggests that 10 output neurons, each dedicated to a specific digit, may be more effective than a binary encoding system.
@@ -100,16 +100,16 @@ Unlike perceptrons, sigmoid neurons output values between 0 and 1. This requires
    - The training set includes handwriting samples from US Census Bureau employees and high school students, while the test set comes from a different group of people.
 
 **Design of the Neural Network**
-   - Each training input $ x $ is considered as a 784-dimensional vector (28x28 pixels).
-   - The desired output $ y = y(x) $ is a 10-dimensional vector representing the digit.
-   - The goal is to find weights and biases so that the network output approximates $ y(x) $ for all inputs.
-   - The cost function, $ C(w, b) $, measures the performance of the network, where $ w $ and $ b $ represent weights and biases, respectively.
+   - Each training input $x$ is considered as a 784-dimensional vector (28x28 pixels).
+   - The desired output $y = y(x)$ is a 10-dimensional vector representing the digit.
+   - The goal is to find weights and biases so that the network output approximates $y(x)$ for all inputs.
+   - The cost function, $C(w, b)$, measures the performance of the network, where $w$ and $b$ represent weights and biases, respectively.
 
 **Gradient Descent for Minimizing Cost Function**
-   - Gradient Descent is an algorithm used to minimize the cost function $ C(w, b) $.
+   - Gradient Descent is an algorithm used to minimize the cost function $C(w, b)$.
    - The quadratic cost function, also known as mean squared error (MSE), is used initially for simplicity.
    - This method involves calculating the gradient of the cost function and adjusting the weights and biases in the opposite direction of the gradient.
-   - The learning rate $ \eta $ determines the size of the steps taken towards minimizing the cost function.
+   - The learning rate $\eta$ determines the size of the steps taken towards minimizing the cost function.
 
 **Variations of Gradient Descent:**
 - Gradient descent variations mimicking a physical ball have advantages but require computing costly second partial derivatives of the cost function, C. For instance, computing 
@@ -125,7 +125,7 @@ $$
 $$
 
 **Applying Gradient Descent in Neural Networks:**
-- Gradient descent helps find the optimal weights, $ w_k $, and biases, $ b_l $, minimizing the cost function. The update rule in the context of neural networks is 
+- Gradient descent helps find the optimal weights, $w_k$, and biases, $b_l$, minimizing the cost function. The update rule in the context of neural networks is 
 
 $$
 w_k \rightarrow w_k' = w_k - \eta \frac{\partial C}{\partial w_k}
@@ -138,10 +138,10 @@ b_l \rightarrow b_l' = b_l - \eta \frac{\partial C}{\partial b_l}.
 $$
 
 **Challenges in Gradient Descent:**
-- Computing the gradient, $ \nabla C $, is time-consuming for large datasets, as it involves averaging gradients $ \nabla C_x $ for each input.
+- Computing the gradient, $\nabla C$, is time-consuming for large datasets, as it involves averaging gradients $\nabla C_x$ for each input.
 
 **Stochastic Gradient Descent:**
-- It estimates $ \nabla C $ by averaging over a small, randomly selected sample (mini-batch) of training inputs. The update rule is 
+- It estimates $\nabla C$ by averaging over a small, randomly selected sample (mini-batch) of training inputs. The update rule is 
 
 $$
 w_k \rightarrow w_k' = w_k - \frac{\eta}{m} \sum_j \frac{\partial C_{X_j}}{\partial w_k}
@@ -156,7 +156,7 @@ $$
 speeding up the learning process.
 
 **Scaling in Cost Function and Updates:**
-- Conventions vary in scaling the cost function and mini-batch updates. Omitting scaling factors like $ \frac{1}{n} $ or $ \frac{1}{m} $ is conceptually equivalent to adjusting the learning rate, $ \eta $.
+- Conventions vary in scaling the cost function and mini-batch updates. Omitting scaling factors like $\frac{1}{n}$ or $\frac{1}{m}$ is conceptually equivalent to adjusting the learning rate, $\eta$.
 
 **Visualization in High Dimensions:**
 - Visualizing the cost function, C, in high-dimensional spaces is challenging. Effective
@@ -249,20 +249,20 @@ Deep neural networks, characterized by multiple layers, decompose complex questi
 	
 	**Solution:**
 	Multiplying all weights and biases in a perceptron network by a positive constant $c > 0$ does not change its behavior. The output of a perceptron is given by:
-	$$
+$$
 	 y = \text{step}\left(\sum_{i}(w_i \cdot x_i) + b\right)
-	$$
+$$
 	After multiplying the weights and biases by $ c $, the equation becomes:
-	$$
+$$
 	y' = \text{step}\left(\sum_{i}(c \cdot w_i \cdot x_i) + c \cdot b\right) = \text{step}\left(c \cdot \left( \sum_{i}(w_i \cdot x_i) + b \right)\right)
-	$$
+$$
 	The step function's output is based on the sign of its input. Multiplying by a positive  $c$  does not change the sign of the input. Therefore, the behavior of the perceptron remains unchanged, as the output of the step function is determined by the input's sign, not its magnitude.
 
 2. **Question :** 
 	Sigmoid neurons simulating perceptrons, part II 
 	Suppose we have the same setup as the last problem - a network of perceptrons. Suppose also that the overall input to the network of perceptrons has been chosen. We won't need the actual input value, we just need the input to have been fixed. Suppose the weights and biases are such that $w⋅x+b≠0$
 	 for the input $x$
-	 to any particular perceptron in the network. Now replace all the perceptrons in the network by sigmoid neurons, and multiply the weights and biases by a positive constant$ c>0$
+	 to any particular perceptron in the network. Now replace all the perceptrons in the network by sigmoid neurons, and multiply the weights and biases by a positive constant $c>0$
 	. Show that in the limit as $c→∞$
 	 the behaviour of this network of sigmoid neurons is exactly the same as the network of perceptrons. How can this fail when $w⋅x+b=0$
 	 for one of the perceptrons?
@@ -282,20 +282,20 @@ Deep neural networks, characterized by multiple layers, decompose complex questi
 	**Solution:**
 	The assertion is that the choice of $\Delta v = -\eta \nabla C$, where $\eta = \epsilon / \|\nabla C\|$ minimizes $\nabla C \cdot \Delta v$ under the constraint $\|\Delta v\| = \epsilon$. To prove this, we use the Cauchy-Schwarz inequality which states that for any vectors $a$ and $b$, $|a \cdot b| \leq \|a\| \|b\|$. Applying this to $\nabla C \cdot \Delta v$:
 	
-	$$
+$$
 	   |\nabla C \cdot \Delta v| \leq \|\nabla C\| \|\Delta v\|
-	$$
+$$
 	
 	Given that $\|\Delta v\| = \epsilon$, we have:
 	
-	$$
+$$
 	   |\nabla C \cdot \Delta v| \leq \|\nabla C\| \epsilon
-	$$
+$$
 	
 	Equality is achieved when $\Delta v$ is in the direction of $\nabla C$ or its opposite. The direction which minimizes $\nabla C \cdot \Delta v$ (i.e., makes it most negative) is the opposite of $\nabla C$. Therefore, $\Delta v = -\eta \nabla C$ with $\eta = \epsilon / \|\nabla C\|$ is the optimal choice.
 
 4. **Question:**
-	I explained gradient descent when $c$ is a function of two variables, and when it's a function of more than two variables. What happens when $c$ is a function of just one variable? Can you provide a geometric interpretation of what gradient descent is doing in the one-dimensional case?
+	I explained gradient descent when c is a function of two variables, and when it's a function of more than two variables. What happens when c is a function of just one variable? Can you provide a geometric interpretation of what gradient descent is doing in the one-dimensional case?
 	
 	**Solution:**	
 	When $C$ is a function of just one variable, say $v$, gradient descent simplifies significantly. The gradient $\nabla C$ becomes a single derivative $\frac{dC}{dv}$. The update rule then becomes $v \rightarrow v' = v - \eta \frac{dC}{dv}$.

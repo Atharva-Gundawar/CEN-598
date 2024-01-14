@@ -254,7 +254,7 @@ $$
 	 y = \text{step}\left(\sum_{i}(w_i \cdot x_i) + b\right)
 $$
 
-After multiplying the weights and biases by $ c $, the equation becomes:
+After multiplying the weights and biases by c, the equation becomes:
 
 $$
 	y' = \text{step}\left(\sum_{i}(c \cdot w_i \cdot x_i) + c \cdot b\right) = \text{step}\left(c \cdot \left( \sum_{i}(w_i \cdot x_i) + b \right)\right)
@@ -290,13 +290,13 @@ $$
 	   |\nabla C \cdot \Delta v| \leq \|\nabla C\| \|\Delta v\|
 $$
 	
-	Given that $\|\Delta v\| = \epsilon$, we have:
+Given that $\|\Delta v\| = \epsilon$, we have:
 	
 $$
 	   |\nabla C \cdot \Delta v| \leq \|\nabla C\| \epsilon
 $$
 	
-	Equality is achieved when $\Delta v$ is in the direction of $\nabla C$ or its opposite. The direction which minimizes $\nabla C \cdot \Delta v$ (i.e., makes it most negative) is the opposite of $\nabla C$. Therefore, $\Delta v = -\eta \nabla C$ with $\eta = \epsilon / \|\nabla C\|$ is the optimal choice.
+Equality is achieved when $\Delta v$ is in the direction of $\nabla C$ or its opposite. The direction which minimizes $\nabla C \cdot \Delta v$ (i.e., makes it most negative) is the opposite of $\nabla C$. Therefore, $\Delta v = -\eta \nabla C$ with $\eta = \epsilon / \|\nabla C\|$ is the optimal choice.
 
 4. **Question:**
 	I explained gradient descent when c is a function of two variables, and when it's a function of more than two variables. What happens when c is a function of just one variable? Can you provide a geometric interpretation of what gradient descent is doing in the one-dimensional case?

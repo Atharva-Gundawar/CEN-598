@@ -24,14 +24,14 @@
    - **Assumption 1**: The cost function can be written as an average over individual training examples: 
      $$C = \frac{1}{n} \sum_x C_x$$
      Here, $C_x$ is the cost for a single training example, and this form is applicable to the quadratic cost function: 
-     $$ C_x = \frac{1}{2} \| y - a^L \| ^2 $$
+     $$C_x = \frac{1}{2} \| y - a^L \| ^2$$
    - **Assumption 2**: The cost can be expressed as a function of the outputs from the neural network. For instance, in the quadratic cost function: 
-     $$ C = \frac{1}{2} \| y - a^L \| ^2 = \frac{1}{2} \sum_j (y_j - a^L_j)^2 $$
+     $$C = \frac{1}{2} \| y - a^L \| ^2 = \frac{1}{2} \sum_j (y_j - a^L_j)^2$$
      Here, $C$ is a function of the output activations $a^L$, with $y$ being a fixed parameter and not a variable influenced by the network's weights and biases.
 
 3. **Quadratic Cost Function Example**:
    - The quadratic cost function is defined as:
-     $$ C = \frac{1}{2n} \sum_x \| y(x) - a^L(x) \| ^2 $$
+     $$C = \frac{1}{2n} \sum_x \| y(x) - a^L(x) \| ^2$$
      Where $n$ is the total number of training examples, $y(x)$ is the desired output, $a^L(x)$ is the vector of activations from the network for input $x$, and $L$ is the number of layers in the network.
 
 ## The Hadamard product
@@ -45,21 +45,13 @@ $$
 
 These are the four fundamental equations essential for backpropagation:
     - Error in the output layer ($\delta_L$):
-        $$
-        \delta_L = \nabla_a C \odot \sigma'(z_L).
-        $$
+        $$\delta_L = \nabla_a C \odot \sigma'(z_L)$$
     - Error in terms of the next layer's error ($\delta_{l+1}$):
-        $$
-        \delta_l = \left( (w_{l+1})^T \delta_{l+1} \right) \odot \sigma'(z_l).
-        $$
+        $$\delta_l = \left( (w_{l+1})^T \delta_{l+1} \right) \odot \sigma'(z_l).$$
     - Rate of change of cost with respect to any bias:
-        $$
-        \frac{\partial C}{\partial b_{lj}} = \delta_{lj}.
-        $$
+        $$\frac{\partial C}{\partial b_{lj}} = \delta_{lj}$$
     - Rate of change of cost with respect to any weight:
-        $$
-        \frac{\partial C}{\partial w_{ljk}} = a_{l-1,k} \delta_{lj}.
-        $$
+        $$\frac{\partial C}{\partial w_{ljk}} = a_{l-1,k} \delta_{lj}$$
 ## The backpropagation algorithm
 
 1. **Input `x`**:
@@ -72,21 +64,21 @@ These are the four fundamental equations essential for backpropagation:
 
 3. **Output Error $\delta^L$**:
     - Compute:
-      $$ \delta^L = \nabla_a C \odot \sigma'(z^L) $$
+      $$\delta^L = \nabla_a C \odot \sigma'(z^L)$$
 
 4. **Backpropagate Error**:
     - For each $l=L-1,L-2,\ldots,2$, compute:
-      $$ \delta^l = ((w^{l+1})^T \delta^{l+1}) \odot \sigma'(z^l) $$
+      $$\delta^l = ((w^{l+1})^T \delta^{l+1}) \odot \sigma'(z^l)$$
 
 5. **Output**:
     - Gradient of the cost function:
-      $$ \frac{\partial C}{\partial w_{jk}^l} = a^{l-1}_k \delta^l_j $$
-      $$ \frac{\partial C}{\partial b_j^l} = \delta^l_j $$
+      $$\frac{\partial C}{\partial w_{jk}^l} = a^{l-1}_k \delta^l_j$$
+      $$\frac{\partial C}{\partial b_j^l} = \delta^l_j$$
 
 #### Modifications to Backpropagation Algorithm
 
 1. **Modified Neuron**:
-    - If output from a neuron is given by $f(\sum_j w_j x_j + b)$, where $f$ is not the sigmoid function, modify the backpropagation accordingly.
+    - If output from a neuron is given by $f(\sum_j w_j x_j + b)$, where f is not the sigmoid function, modify the backpropagation accordingly.
 
 2. **Linear Neurons**:
     - Replace $\sigma$ with $\sigma(z) = z$ and rewrite the backpropagation steps.
@@ -99,21 +91,21 @@ These are the four fundamental equations essential for backpropagation:
 
 3. **Feedforward**:
     - For each $l=2,3,\ldots,L$, compute:
-      $$ z_{x,l} = w^l a_{x,l-1} + b^l $$
-      $$ a_{x,l} = \sigma(z_{x,l}) $$
+      $$z_{x,l} = w^l a_{x,l-1} + b^l$$
+      $$a_{x,l} = \sigma(z_{x,l})$$
 
 4. **Output Error $\delta_{x,L}$**:
     - Compute:
-      $$ \delta_{x,L} = \nabla_a C_x \odot \sigma'(z_{x,L}) $$
+      $$\delta_{x,L} = \nabla_a C_x \odot \sigma'(z_{x,L})$$
 
 5. **Backpropagate Error**:
     - For each $l=L-1,L-2,\ldots,2$, compute:
-      $$ \delta_{x,l} = ((w^{l+1})^T \delta_{x,l+1}) \odot \sigma'(z_{x,l}) $$
+      $$\delta_{x,l} = ((w^{l+1})^T \delta_{x,l+1}) \odot \sigma'(z_{x,l})$$
 
 6. **Gradient Descent**:
     - Update weights and biases:
-      $$ w^l \rightarrow w^l - \frac{\eta}{m} \sum_x \delta_{x,l} (a_{x,l-1})^T $$
-      $$ b^l \rightarrow b^l - \frac{\eta}{m} \sum_x \delta_{x,l} $$
+      $$w^l \rightarrow w^l - \frac{\eta}{m} \sum_x \delta_{x,l} (a_{x,l-1})^T$$
+      $$b^l \rightarrow b^l - \frac{\eta}{m} \sum_x \delta_{x,l}$$
 
 ## Solutions to Exercises
 

@@ -10,7 +10,7 @@
 **Matrix-Based Calculation of Neuron Activations:**
    - The activation $a_{lj}$ of the jth neuron in the lth layer is given by the equation:
 $$
-     a_{lj} = \sigma\left(\sum_k w_{ljk} a_{l-1,k} + b_{lj}\right),
+a_{lj} = \sigma\left(\sum_k w_{ljk} a_{l-1,k} + b_{lj}\right),
 $$
      where $\sigma$ is the activation function, and the sum is over all neurons k in the $l-1$th layer.
 

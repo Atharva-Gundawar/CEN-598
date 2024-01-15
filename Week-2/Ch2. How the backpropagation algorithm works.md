@@ -1,25 +1,23 @@
 **Aim:** To understand how the back propagation algorithm works.
 
-### Warm up: A Fast Matrix-Based Approach to Computing the Output from a Neural Network
+## Warm up: a fast matrix-based approach to computing the output from a neural network
+
 
 **Weight and Activation Notation in Neural Networks:**
-- **Weights:** \( w_{ljk} \) denotes the weight from the \( k \)th neuron in layer \( l-1 \) to the \( j \)th neuron in layer \( l \).
-- **Biases and Activations:** \( b_{lj} \) for the bias, and \( a_{lj} \) for the activation of the \( j \)th neuron in the \( l \)th layer.
+   - Weights: $w_{ljk}$ denotes the weight from the $k$th neuron in layer $l-1$ to the jth neuron in layer l.
+   - Biases and Activations: $b_{lj}$ for the bias, and $a_{lj}$ for the activation of the jth neuron in the lth layer.
 
 **Matrix-Based Calculation of Neuron Activations:**
-- The activation \( a_{lj} \) of the \( j \)th neuron in the \( l \)th layer is given by the equation:
-  \[
-  a_{lj} = \sigma\left(\sum_k w_{ljk} a_{l-1,k} + b_{lj}\right),
-  \]
-  where \( \sigma \) is the activation function, and the sum is over all neurons \( k \) in the \( l-1 \)th layer.
+   - The activation $a_{lj}$ of the jth neuron in the lth layer is given by the equation: $a_{lj} = \sigma\left(\sum_k w_{ljk} a_{l-1,k} + b_{lj}\right)$
+    where $\sigma$ is the activation function, and the sum is over all neurons k in the $l-1$th layer.
 
 **Vectorization and Efficient Computation:**
-- **Vectorized Form:** The equation above can be rewritten in a compact vectorized form as:
-  \[
-  a_l = \sigma(w_l a_{l-1} + b_l),
-  \]
-  where \( w_l \) is the weight matrix, \( b_l \) is the bias vector, and \( a_l \) is the activation vector for layer \( l \).
-- The concept of vectorization applies functions like \( \sigma \) to every element of a vector, simplifying and speeding up computations in neural networks.
+   - Vectorized Form: The equation above can be rewritten in a compact vectorized form as:
+     $$
+     a_l = \sigma(w_l a_{l-1} + b_l),
+     $$
+     where $w_l$ is the weight matrix, $b_l$ is the bias vector, and $a_l$ is the activation vector for layer $l$.
+   - The concept of vectorization applies functions like $\sigma$ to every element of a vector, simplifying and speeding up computations in neural networks.
 
 ## The two assumptions we need about the cost function
 

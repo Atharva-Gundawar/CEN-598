@@ -4,15 +4,15 @@
 
 
 **Weight and Activation Notation in Neural Networks:**
-   - Weights: $w_{ljk}$ denotes the weight from the $k$th neuron in layer $l-1$ to the $j$th neuron in layer $l$.
-   - Biases and Activations: $b_{lj}$ for the bias, and $a_{lj}$ for the activation of the $j$th neuron in the $l$th layer.
+   - Weights: $w_{ljk}$ denotes the weight from the $k$th neuron in layer $l-1$ to the jth neuron in layer l.
+   - Biases and Activations: $b_{lj}$ for the bias, and $a_{lj}$ for the activation of the jth neuron in the lth layer.
 
 **Matrix-Based Calculation of Neuron Activations:**
-   - The activation $a_{lj}$ of the $j$th neuron in the $l$th layer is given by the equation:
-     $$
+   - The activation $a_{lj}$ of the jth neuron in the lth layer is given by the equation:
+    $$
      a_{lj} = \sigma\left(\sum_k w_{ljk} a_{l-1,k} + b_{lj}\right),
-     $$
-     where $\sigma$ is the activation function, and the sum is over all neurons $k$ in the $l-1$th layer.
+    $$
+     where $\sigma$ is the activation function, and the sum is over all neurons k in the $l-1$th layer.
 
 **Vectorization and Efficient Computation:**
    - Vectorized Form: The equation above can be rewritten in a compact vectorized form as:

@@ -108,7 +108,7 @@ $$
 2. **L2 Regularization (Weight Decay):**
    - Equation: 
 $$
-     C = -\frac{1}{n} \sum_x \left[ y_j \ln a^L_j + (1 - y_j) \ln (1 - a^L_j) \right] + \frac{\lambda}{2n} \sum_w w^2
+   C = -\frac{1}{n} \sum_x \left[ y_j \ln a^L_j + (1 - y_j) \ln (1 - a^L_j) \right] + \frac{\lambda}{2n} \sum_w w^2
 $$
    - Here, C is the regularized cross-entropy cost function. The first term is the standard cross-entropy, and the second term is the sum of squares of all the weights in the network, scaled by $\frac{\lambda}{2n}$. This technique also applies to other cost functions, like the quadratic cost.
 
@@ -116,7 +116,7 @@ $$
    - Regularization makes the network prefer learning small weights unless larger weights significantly improve the first part of the cost function. The balance is controlled by the regularization parameter λ.
    - The gradient descent learning rule for weights in a regularized network becomes:
 $$
-     w \rightarrow w - \eta \left( \frac{\partial C_0}{\partial w} + \frac{\lambda}{n} w \right) = (1 - \eta \frac{\lambda}{n})w - \eta \frac{\partial C_0}{\partial w}
+   w \rightarrow w - \eta \left( \frac{\partial C_0}{\partial w} + \frac{\lambda}{n} w \right) = (1 - \eta \frac{\lambda}{n})w - \eta \frac{\partial C_0}{\partial w}
 $$
    - The learning rule for biases remains unchanged.
 
@@ -138,7 +138,7 @@ $$
 - **Concept**: Modifies the cost function by adding the sum of absolute values of the weights.
 - **Equation**:
 $$
-  C = C_0 + \frac{\lambda}{n} \sum |w|
+C = C_0 + \frac{\lambda}{n} \sum |w|
 $$
 - **Behavior**: Penalizes large weights, tending to favor small weights, which is different from L2 regularization.
 - **Gradient Descent Update Rule**:

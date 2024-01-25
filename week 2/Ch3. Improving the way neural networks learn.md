@@ -74,10 +74,10 @@ Again, this avoids the learning slowdown by eliminating the dependence on the $\
 - **Weighted Inputs**: Similar to sigmoid layers, it starts with weighted inputs \( z_{Lj} = \sum_k w_{Ljk} a_{L-1k} + b_{Lj} \).
 - **Softmax Function**: Instead of the sigmoid function, the softmax function is applied:
   
-  $$
+$$
   a_{Lj} = \frac{e^{z_{Lj}}}{\sum_k e^{z_{Lk}}}
-  $$
-  
+$$
+
   This ensures all output activations are positive and sum up to 1, forming a probability distribution.
 
 #### Characteristics of Softmax Outputs
@@ -90,9 +90,9 @@ Again, this avoids the learning slowdown by eliminating the dependence on the $\
 - **Behavior of Cost Function**: When network performance is good (high probability for the correct output), the cost is low, and vice versa.
 - **Solving Learning Slowdown**: Softmax layers with log-likelihood cost do not encounter learning slowdown, similar to sigmoid layers with cross-entropy cost.
   
-  $$
+$$
   \frac{\partial C}{\partial b_{Lj}} = \frac{\partial C}{\partial w_{Ljk}} = a_{Lj} - y_j
-  $$
+$$
   
   This ensures a consistent learning rate without slowdown.
 
@@ -107,17 +107,17 @@ Again, this avoids the learning slowdown by eliminating the dependence on the $\
 
 2. **L2 Regularization (Weight Decay):**
    - Equation: 
-     $$
+$$
      C = -\frac{1}{n} \sum_x \left[ y_j \ln a^L_j + (1 - y_j) \ln (1 - a^L_j) \right] + \frac{\lambda}{2n} \sum_w w^2
-     $$
+$$
    - Here, C is the regularized cross-entropy cost function. The first term is the standard cross-entropy, and the second term is the sum of squares of all the weights in the network, scaled by $\frac{\lambda}{2n}$. This technique also applies to other cost functions, like the quadratic cost.
 
 3. **Impact of Regularization:**
    - Regularization makes the network prefer learning small weights unless larger weights significantly improve the first part of the cost function. The balance is controlled by the regularization parameter λ.
    - The gradient descent learning rule for weights in a regularized network becomes:
-     $$
+$$
      w \rightarrow w - \eta \left( \frac{\partial C_0}{\partial w} + \frac{\lambda}{n} w \right) = (1 - \eta \frac{\lambda}{n})w - \eta \frac{\partial C_0}{\partial w}
-     $$
+$$
    - The learning rule for biases remains unchanged.
 
 4. **Effectiveness of Regularization:**
@@ -137,14 +137,14 @@ Again, this avoids the learning slowdown by eliminating the dependence on the $\
 #### L1 Regularization
 - **Concept**: Modifies the cost function by adding the sum of absolute values of the weights.
 - **Equation**:
-  $$
+$$
   C = C_0 + \frac{\lambda}{n} \sum |w|
-  $$
+$$
 - **Behavior**: Penalizes large weights, tending to favor small weights, which is different from L2 regularization.
 - **Gradient Descent Update Rule**:
-  $$
+$$
   w \rightarrow w' = w - \frac{\eta \lambda}{n} \text{sgn}(w) - \eta \frac{\partial C_0}{\partial w}
-  $$
+$$
 - **Comparison with L2**: In L1, weights shrink by a constant amount, unlike the proportional shrinking in L2.
 
 #### Dropout

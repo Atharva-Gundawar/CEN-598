@@ -100,9 +100,8 @@ As transistors shrink, their power density stays approximately constant. Dennard
 
 The total consumed power (in Watts or Joules per second) is the sum of the dynamic (or switching) power and the static (or leakage) power. Dennard scaling only accounts for the dynamic power, which is defined as follows:
 
-$$
-P_{D} = Q\cdot E\cdot f = \frac{1}{2}\cdot Q\cdot C\cdot V^2\cdot f
-$$
+$P_{D} = Q\cdot E\cdot f = \frac{1}{2}\cdot Q\cdot C\cdot V^2\cdot f$
+
 E is the energy required to open or close a gate
 Q is the number of active transistors
 C is the capacitance(Capability of a material object or device to store electric charge)
@@ -122,7 +121,7 @@ The primary contributors to the **increased dark silicon** are the exponential g
 
 ### Gene Amdahl:
 formalized the speedup when only a fraction of a program is improved, used to determine the limitations of parallel computing. Using N>1 cores for a particular workload results in a maximum speed up of
-$$\frac{1}{(1-P)+(P/N)}$$
+$\frac{1}{(1-P)+(P/N)}$
 where P is the percentage of the workload that is parallelizable.
 ![](https://deeplearningsystems.ai/figures/ch07-04.png)
 
@@ -130,7 +129,7 @@ where P is the percentage of the workload that is parallelizable.
 The time to read data from memory is often the main hindrance to performance. One way to reduce exposure to the memory bandwidth is to use a cache memory hierarchy that stores frequently or immediately accessed elements closer to the compute element.
 
 Memory can be described by its capacity (bytes) and data transfer rate or bandwidth (bytes per second). The bandwidth (BW) [can be computed](https://en.wikipedia.org/wiki/Memory_bandwidth#Bandwidth_computation_and_nomenclature) as follows:
-$$\text{BW } = f_{\mathit{mem}} \times \mbox{number of interfaces} \times \mbox{transfers per clock} \times \mbox{mem bus width},$$
+$\text{BW } = f_{\mathit{mem}} \times \mbox{number of interfaces} \times \mbox{transfers per clock} \times \mbox{mem bus width},$
 where $f_{\mathit{mem}}$ is the memory frequency, the interfaces are typically 2 (dual-channel configuration) in modern processors, and the transfers per clock are 2 for memories that transfer on both the rising and falling clock edge (such as DDR) and 1 otherwise.
 
 The memory types used in production in increasing order of accessed time and, equivalently, in increasing order of memory density (bytes per silicon area) and decreasing monetary cost per byte are as follows:
@@ -266,9 +265,9 @@ The ratio of the number of operations required to compute a kernel divided by th
 - If every operand is read from DRAM and every result is written to DRAM, then each operation (two reads and one write) would have an arithmetic intensity of $1/(3\times \mathit{sizeof} (\mbox{datatype}))$
 	- In the given scenario, for each operation, there are two read operations (to fetch the operands) and one write operation (to store the result).
 - In the ideal case, the operands and result fit in SRAM and the OI is:
-$$
+$
 \mathit{OI}_{\mathit{kernel}} = \frac{\mathit{ops}}{\mathit{sizeof} (\mbox{input activations}) + \mathit{sizeof} (\mbox{weights})+ \mathit{sizeof}(\mbox{output activations})}.
-$$
+$
 #### Roofline model
 
 ![](https://deeplearningsystems.ai/figures/ch07-07.png)
@@ -294,9 +293,9 @@ The graph, often referred to as a "roofline model," is a visual representation u
 
 
 The relation between roofline and computation time is as follows: the time $T$ it takes to execute a kernel, assuming perfect overlap of communication and computation, is:
-$$
+$
 T= \max \left( \frac{\text{number of ops to compute kernel}} {\text{peak processor OPS}}, \frac{\text{bytes to read from memory}} {\text{peak memory bandwidth}} \right).
-$$
+$
 **Data reuse is key to achieving high OI.** 
 Data reuse means reusing the operands or the result for multiple cycles. The OI for a kernel function can vary considerably depending on how much data is reused.
 
@@ -307,15 +306,15 @@ Data reuse means reusing the operands or the result for multiple cycles. The OI 
 - **CNN vs. GEMM Kernel:** It contrasts the OI of a typical CNN kernel (high OI) with that of a GEMM kernel used in MLPs (Multi-Layer Perceptrons), RNNs (Recurrent Neural Networks), or other fully-connected layers (low OI).
 
 - **OI Calculation for GEMM:** It then provides a formula for calculating the OI of a GEMM operation. The GEMM operation is essentially matrix multiplication, where matrix A (with dimensions MxK) is multiplied with matrix B (with dimensions KxN) to produce matrix C (with dimensions MxN). The formula for OI in this context is:
-$$
+$
 \mathit{OI} = \frac{2\mathit{MKN}}{\mathit{sizeof}(\mbox{datatype}) \times (2\mathit{MN} + \mathit{MK} + \mathit{KN})},
-$$
+$
   The numerator accounts for the number of operations (2 for each multiply and add), and the denominator accounts for the amount of data movement (considering the sizes of matrices A, B, and C, as well as the size of the data type in bytes).
 
 - **OI Calculation for Convolution:** The document also gives a formula for the OI of a convolution operation in a neural network. A convolution involves sliding a smaller matrix (kernel) across a larger matrix (input feature map) and performing element-wise multiplications and additions. The formula provided is:
-$$
+$
 \mathit{OI} = \frac{2NKCRS \tilde{H}\tilde{W}} {\mathit{sizeof}(\mbox{datatype}) \times (2N\tilde{H} \tilde{W}K + KCRS + NHWC)}.
-$$
+$
   In this formula, N  is the batch size,  K is the number of output feature maps, C is the number of input feature maps, $R \times S$  is the size of the kernel, and $H' \times W'$ are the dimensions of the output feature map. The formula accounts for the operations involved in the convolution and the data movement between the memory and the compute units.
 
 These formulas are used to measure and optimize the efficiency of neural network operations, particularly in hardware that is designed for high-performance computing, such as GPUs or specialized AI accelerators. The aim is to maximize the computational work done per unit of data transferred to and from memory, as memory access is often the bottleneck in such computations.
